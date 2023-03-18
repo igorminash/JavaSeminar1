@@ -1,6 +1,5 @@
 package org.example.homework4.hw2;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -16,17 +15,20 @@ public class Ex2 {
         System.out.println("3 = " + simplifyPath(text3));
     }
 
-    private static boolean simplifyPath( String path) {
+    /**
+     * @param path входная строка
+     * @return соответствие условию или нет
+     */
+    private static boolean simplifyPath(String path) {
         Deque<String> list = new LinkedList<>();
-        String [] arr = path.split("");
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i].contains("(") || arr[i].contains("[") || arr[i].contains("{")) {
-                list.add(arr[i]);
-            }
-            else if (list.isEmpty()) return false;
-            else if (arr[i].equals(")") && !list.pop().equals("(")) return false;
-            else if (arr[i].equals("]") && !list.pop().equals("[")) return false;
-            else if (arr[i].equals("}") && !list.pop().equals("{")) return false;
+        String[] arr = path.split("");
+        for (String s : arr) {
+            if (s.contains("(") || s.contains("[") || s.contains("{")) {
+                list.add(s);
+            } else if (list.isEmpty()) return false;
+            else if (s.equals(")") && !list.pop().equals("(")) return false;
+            else if (s.equals("]") && !list.pop().equals("[")) return false;
+            else if (s.equals("}") && !list.pop().equals("{")) return false;
         }
         return list.isEmpty();
     }
