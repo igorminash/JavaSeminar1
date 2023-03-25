@@ -15,12 +15,12 @@ public class Ex2 {
         String searchWord = "Россия".toLowerCase();
         for (String s : arr) {
             String s2 = s.replaceAll("[^А-Яа-яЁё]", "");
-            if (!mapCh.containsKey(s2)) {
-                mapCh.putIfAbsent(s2, 1);
-            } else {
-                mapCh.put(s2, mapCh.get(s2) + 1);
+            if (!s2.equals(searchWord)) {
+                continue;
             }
+            int count = mapCh.getOrDefault(s2,0);
+            mapCh.put(s2, ++count);
         }
-            System.out.println(searchWord + " встретился " + mapCh.get(searchWord) + "раз");
+        System.out.println(searchWord + " встретился " + mapCh.getOrDefault(searchWord,0) + "раз");
     }
 }
